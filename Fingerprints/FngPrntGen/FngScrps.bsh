@@ -1,0 +1,84 @@
+#!\bin\bash
+
+module load pymol
+echo "Script FngScrps.bsh requires PYMOL to run properly"
+
+prfxDir=$1
+
+myAb=$2
+
+export pdbext=".pdb"
+export strtdir=`pwd`
+#export perldir=$(pwd)/../FngPrntCode/PERL
+#export datadir=$(pwd)/../FngPrntCode/Data
+export perldir=$FNGRPDIR/PERL
+export datadir=$FNGRPDIR/Data
+
+
+FNDCDR="$perldir/FindCDRsPy.pl "
+TRMPDB="$perldir/TrimPDBwGrd.pl "
+
+CHRGPRJ="$perldir/VchargPrjct.pl "
+
+foldr=($(ls -d $prfxDir*))
+for j in "${foldr[@]}"
+do
+    cd $j
+    echo "Working in Dir: " $j 
+
+    a=($(ls $myAb*.pdb))
+
+    for i in "${a[@]}"
+    do
+       i=$(echo "${i/\@/}") 
+       echo $i 
+       export base=(`basename $i $pdbext`)
+       echo $base
+       mkdir $base
+       cp $i $base
+       cd $base
+       ls
+# identify the H, L, and antigen chains
+# compute CDRs  write PDBs for the Ab and Antigen
+       cp $datadir/* .
+       echo "FNDCDR " $base 
+       perl $FNDCDR $base
+
+# Previous step should have created CDR.pdb ANTIGN.pdb
+
+# Assign b factors using charge scheme and produce projection of atoms onto the grid
+# perl -w chargPrjct.pl CDR  cutoff is_antign
+       echo "CHRGPRJ CDR 10.5 0"  
+       perl $CHRGPRJ CDR 10.5 0
+
+# Alternatively, remove residues with Calfas at distance from the grid beyond a given cutoff (10.5A).
+       echo "TRMPDB "$base"-HL 10.5"  
+       perl $TRMPDB $base-HL 10.5 
+
+# Then, assign b factors using charge scheme, and produce projection of atoms onto the grid
+       echo "CHRGPRJ "$base"-HL-trim"   10.5 0
+       perl $CHRGPRJ $base-HL-trim 10.5 0
+       cp $base-HL-trim-CRG.pdb ABDY-trim-CRG.pdb       
+       cp $base-HL-trim-GRD.pdb ABDY-trim-GRD.pdb       
+
+       if [ -f  ANTIGN.pdb ]; then
+# Repete for the antigen:
+# remove residues with Calfas at distance form the grid beyond a given cutoff (10.5A).
+     echo "TRMPDB ANTIGN 10.5"
+     perl $TRMPDB ANTIGN 10.5
+# Assign b factors using charge scheme, and produce projection of atoms onto the grid
+          echo "CHRGPRJ ANTIGN-trim " 10.5 1
+          perl $CHRGPRJ ANTIGN-trim 10.5 1
+# run pymol for the Ab and Antigen to produce pngs
+          pymol -cq wrtpng2AA.pml;
+   
+       else
+          echo No ANTIGN file for $base
+# run pymol for the Ab to produce pngs
+          pymol -cq wrtpng1AA.pml;
+       fi
+#    
+       cd ../
+  done
+  cd ../
+done

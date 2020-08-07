@@ -1,0 +1,768 @@
+2020-07-31 18:00:38.745503: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+RCAE.RESULT_PATH: /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/
+RCAE_AD.DATASET: adi
+INFO: The load_dataset is  adi
+1.7.0
+from main for adi
+main into learner.load_data
+RCAEnw.py: load_data 
+ADI_DataLoader:adi_normal is=  0
+Cfg.ad_experiment: True  self.n_classes: 2
+IMAGE Data will be loaded from:/ /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//../ADI_DB/dataL1/
+Inside the ADI_DataLoader RCAE.RESULT_PATH: /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/
+
+
+ADI_DataLoader:icnt is=  1
+[INFO:] Loading data...
+The normal label used in experiment, 0
+Found 11780 images belonging to 2 classes.
+12
+trlabels= {0: 'S1', 1: 'S2'} length= 2
+clssVec= [0 1]
+clsV= [[0]
+ [1]]
+Actual number of training images= 11780
+Batch_size for training images= 1000 
+
+Found 4340 images belonging to 2 classes.
+Actual number of testing images= 4340
+Found 2030 images belonging to 1 classes.
+Actual number of mytesting images= 2030
+train_generator.samples 11780  trbatches_per_epoch= 12
+1 shape y_train (11780, 1)
+ y_train[mid - 5 :mid + 5] [[1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]]
+A  i=  0   S2A5995.18  y=  [1]
+A  i=  1   S2A6038.207  y=  [1]
+A  i=  2   S2A5878.275  y=  [1]
+A  i=  3   S2A5923.19  y=  [1]
+A  i=  4   S2A5843.353  y=  [1]
+shape x_test (4340, 32, 32, 3)
+shape y_test (4340, 1)
+len tstfile_names 4340
+B  i=  0   S2A5946.13  y=  [1]
+B  i=  1   S2A6018.15  y=  [1]
+B  i=  2   S2A5912.58  y=  [1]
+B  i=  3   S2A5819.337  y=  [1]
+B  i=  4   S2A5785.181  y=  [1]
+C  i=  4335   S2A5880.275  y=  [1]
+C  i=  4336   S2A5961.20  y=  [1]
+C  i=  4337   S2A5984.134  y=  [1]
+C  i=  4338   S2A5984.176  y=  [1]
+C  i=  4339   S2A5785.89  y=  [1]
+shape x_mytest (2030, 32, 32, 3)
+len mytstfile_names 2030
+D  i=  0   S1A5780.1  y=  [0]
+D  i=  1   S1A5780.10  y=  [0]
+D  i=  2   S1A5780.100  y=  [0]
+D  i=  3   S1A5780.101  y=  [0]
+D  i=  4   S1A5780.102  y=  [0]
+E  i=  2025   S2A6058.5  y=  [1]
+E  i=  2026   S2A6058.6  y=  [1]
+E  i=  2027   S2A6058.7  y=  [1]
+E  i=  2028   S2A6058.8  y=  [1]
+E  i=  2029   S2A6058.9  y=  [1]
+
+1 shape x_test (4340, 32, 32, 3)
+1 shape y_test (4340, 1)
+1 tstfile_names[0:3]   ['S2A5946.13' 'S2A6018.15' 'S2A5912.58']
+1 shape of tstfile_names   (4340,)
+2 shape x_train (16120, 32, 32, 3)
+2 shape y_train (16120, 1)
+2 x_filenam[0:3]   ['S2A5995.18' 'S2A6038.207' 'S2A5878.275']
+2 shape of x_filenam   (16120,)
+2 shape y_train (16120, 1)
+Cfg.adi_normal 0
+LEN y_tsst: 4340
+3 shape x_norm (900, 32, 32, 3)
+ x_norm_fn[0:4]= ['S1A5784.178' 'S1A5784.155' 'S1A5784.103' 'S1A5935.219']
+new outliers: [1]
+len idx_outlier: 16120
+shape idx_outlier: (16120,)
+idx_outlier[0]: True
+NEW len x_outlier: 15220
+NEW len x_outlier_fn: 15220
+ x_outlier_fn[0:4]= ['S2A5995.18' 'S2A6038.207' 'S2A5878.275' 'S2A5923.19']
+ y_outlier[0:10]= [1 1 1 1 1 1 1 1 1 1]
+INFO: Random Seed set is  89
+xp_outlier shape: (15220, 32, 32, 3)
+ xp_outlier_fn[0:4]= ['S2A6061.246' 'S2A5904.8' 'S2A5949.7' 'S2A5901.299']
+After RND permutation, xtrain shape: (16120, 32, 32, 3)
+_X_test_beforegcn, (16120, 32, 32, 3) 0.77647066 0.0
+Data loaded.
+DRR build_autoencoder
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 32, 32, 64)        1792      
+_________________________________________________________________
+activation_1 (Activation)    (None, 32, 32, 64)        0         
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 32, 32, 64)        256       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 16, 16, 64)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 16, 16, 32)        18464     
+_________________________________________________________________
+activation_2 (Activation)    (None, 16, 16, 32)        0         
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 16, 16, 32)        128       
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 8, 8, 32)          0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 8, 8, 16)          4624      
+_________________________________________________________________
+activation_3 (Activation)    (None, 8, 8, 16)          0         
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 8, 8, 16)          64        
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 4, 4, 16)          0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 256)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 256)               65792     
+_________________________________________________________________
+activation_4 (Activation)    (None, 256)               0         
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 256)               1024      
+_________________________________________________________________
+dense_2 (Dense)              (None, 128)               32896     
+_________________________________________________________________
+activation_5 (Activation)    (None, 128)               0         
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 128)               512       
+_________________________________________________________________
+dense_3 (Dense)              (None, 256)               33024     
+_________________________________________________________________
+activation_6 (Activation)    (None, 256)               0         
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 256)               1024      
+_________________________________________________________________
+reshape_1 (Reshape)          (None, 4, 4, 16)          0         
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 4, 4, 16)          2320      
+_________________________________________________________________
+activation_7 (Activation)    (None, 4, 4, 16)          0         
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 4, 4, 16)          64        
+_________________________________________________________________
+up_sampling2d_1 (UpSampling2 (None, 8, 8, 16)          0         
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 8, 8, 32)          4640      
+_________________________________________________________________
+activation_8 (Activation)    (None, 8, 8, 32)          0         
+_________________________________________________________________
+batch_normalization_8 (Batch (None, 8, 8, 32)          128       
+_________________________________________________________________
+up_sampling2d_2 (UpSampling2 (None, 16, 16, 32)        0         
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 16, 16, 64)        18496     
+_________________________________________________________________
+activation_9 (Activation)    (None, 16, 16, 64)        0         
+_________________________________________________________________
+batch_normalization_9 (Batch (None, 16, 16, 64)        256       
+_________________________________________________________________
+up_sampling2d_3 (UpSampling2 (None, 32, 32, 64)        0         
+_________________________________________________________________
+conv2d_7 (Conv2D)            (None, 32, 32, 3)         1731      
+_________________________________________________________________
+activation_10 (Activation)   (None, 32, 32, 3)         0         
+=================================================================
+Total params: 187,235
+Trainable params: 185,507
+Non-trainable params: 1,728
+_________________________________________________________________
+[INFO:]DRR Autoencoder summary  None
+After build_autoencoder
+Out learner.load_data 
+[INFO:] Assertions of memory muted
+Out learner.check_all 
+RCAE_AD.DATASET initial: adi
+ADI_DataLoader:adi_normal is=  0
+Cfg.ad_experiment: True  self.n_classes: 2
+IMAGE Data will be loaded from:/ /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//../ADI_DB/dataL1/
+Inside the ADI_DataLoader RCAE.RESULT_PATH: /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/
+
+
+ADI_DataLoader:icnt is=  2
+[INFO:] Loading data...
+The normal label used in experiment, 0
+Found 11780 images belonging to 2 classes.
+12
+trlabels= {0: 'S1', 1: 'S2'} length= 2
+clssVec= [0 1]
+clsV= [[0]
+ [1]]
+Actual number of training images= 11780
+Batch_size for training images= 1000 
+
+Found 4340 images belonging to 2 classes.
+Actual number of testing images= 4340
+Found 2030 images belonging to 1 classes.
+Actual number of mytesting images= 2030
+train_generator.samples 11780  trbatches_per_epoch= 12
+1 shape y_train (11780, 1)
+ y_train[mid - 5 :mid + 5] [[1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]
+ [1]]
+A  i=  0   S2A5995.18  y=  [1]
+A  i=  1   S2A6038.207  y=  [1]
+A  i=  2   S2A5878.275  y=  [1]
+A  i=  3   S2A5923.19  y=  [1]
+A  i=  4   S2A5843.353  y=  [1]
+shape x_test (4340, 32, 32, 3)
+shape y_test (4340, 1)
+len tstfile_names 4340
+B  i=  0   S2A5946.13  y=  [1]
+B  i=  1   S2A6018.15  y=  [1]
+B  i=  2   S2A5912.58  y=  [1]
+B  i=  3   S2A5819.337  y=  [1]
+B  i=  4   S2A5785.181  y=  [1]
+C  i=  4335   S2A5880.275  y=  [1]
+C  i=  4336   S2A5961.20  y=  [1]
+C  i=  4337   S2A5984.134  y=  [1]
+C  i=  4338   S2A5984.176  y=  [1]
+C  i=  4339   S2A5785.89  y=  [1]
+shape x_mytest (2030, 32, 32, 3)
+len mytstfile_names 2030
+D  i=  0   S1A5780.1  y=  [0]
+D  i=  1   S1A5780.10  y=  [0]
+D  i=  2   S1A5780.100  y=  [0]
+D  i=  3   S1A5780.101  y=  [0]
+D  i=  4   S1A5780.102  y=  [0]
+E  i=  2025   S2A6058.5  y=  [1]
+E  i=  2026   S2A6058.6  y=  [1]
+E  i=  2027   S2A6058.7  y=  [1]
+E  i=  2028   S2A6058.8  y=  [1]
+E  i=  2029   S2A6058.9  y=  [1]
+
+1 shape x_test (4340, 32, 32, 3)
+1 shape y_test (4340, 1)
+1 tstfile_names[0:3]   ['S2A5946.13' 'S2A6018.15' 'S2A5912.58']
+1 shape of tstfile_names   (4340,)
+2 shape x_train (16120, 32, 32, 3)
+2 shape y_train (16120, 1)
+2 x_filenam[0:3]   ['S2A5995.18' 'S2A6038.207' 'S2A5878.275']
+2 shape of x_filenam   (16120,)
+2 shape y_train (16120, 1)
+Cfg.adi_normal 0
+LEN y_tsst: 4340
+3 shape x_norm (900, 32, 32, 3)
+ x_norm_fn[0:4]= ['S1A5784.178' 'S1A5784.155' 'S1A5784.103' 'S1A5935.219']
+new outliers: [1]
+len idx_outlier: 16120
+shape idx_outlier: (16120,)
+idx_outlier[0]: True
+NEW len x_outlier: 15220
+NEW len x_outlier_fn: 15220
+ x_outlier_fn[0:4]= ['S2A5995.18' 'S2A6038.207' 'S2A5878.275' 'S2A5923.19']
+ y_outlier[0:10]= [1 1 1 1 1 1 1 1 1 1]
+INFO: Random Seed set is  89
+xp_outlier shape: (15220, 32, 32, 3)
+ xp_outlier_fn[0:4]= ['S2A6061.246' 'S2A5904.8' 'S2A5949.7' 'S2A5901.299']
+After RND permutation, xtrain shape: (16120, 32, 32, 3)
+_X_test_beforegcn, (16120, 32, 32, 3) 0.77647066 0.0
+Data loaded.
+DRR build_autoencoder
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_8 (Conv2D)            (None, 32, 32, 64)        1792      
+_________________________________________________________________
+activation_11 (Activation)   (None, 32, 32, 64)        0         
+_________________________________________________________________
+batch_normalization_10 (Batc (None, 32, 32, 64)        256       
+_________________________________________________________________
+max_pooling2d_4 (MaxPooling2 (None, 16, 16, 64)        0         
+_________________________________________________________________
+conv2d_9 (Conv2D)            (None, 16, 16, 32)        18464     
+_________________________________________________________________
+activation_12 (Activation)   (None, 16, 16, 32)        0         
+_________________________________________________________________
+batch_normalization_11 (Batc (None, 16, 16, 32)        128       
+_________________________________________________________________
+max_pooling2d_5 (MaxPooling2 (None, 8, 8, 32)          0         
+_________________________________________________________________
+conv2d_10 (Conv2D)           (None, 8, 8, 16)          4624      
+_________________________________________________________________
+activation_13 (Activation)   (None, 8, 8, 16)          0         
+_________________________________________________________________
+batch_normalization_12 (Batc (None, 8, 8, 16)          64        
+_________________________________________________________________
+max_pooling2d_6 (MaxPooling2 (None, 4, 4, 16)          0         
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 256)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 256)               65792     
+_________________________________________________________________
+activation_14 (Activation)   (None, 256)               0         
+_________________________________________________________________
+batch_normalization_13 (Batc (None, 256)               1024      
+_________________________________________________________________
+dense_5 (Dense)              (None, 128)               32896     
+_________________________________________________________________
+activation_15 (Activation)   (None, 128)               0         
+_________________________________________________________________
+batch_normalization_14 (Batc (None, 128)               512       
+_________________________________________________________________
+dense_6 (Dense)              (None, 256)               33024     
+_________________________________________________________________
+activation_16 (Activation)   (None, 256)               0         
+_________________________________________________________________
+batch_normalization_15 (Batc (None, 256)               1024      
+_________________________________________________________________
+reshape_2 (Reshape)          (None, 4, 4, 16)          0         
+_________________________________________________________________
+conv2d_11 (Conv2D)           (None, 4, 4, 16)          2320      
+_________________________________________________________________
+activation_17 (Activation)   (None, 4, 4, 16)          0         
+_________________________________________________________________
+batch_normalization_16 (Batc (None, 4, 4, 16)          64        
+_________________________________________________________________
+up_sampling2d_4 (UpSampling2 (None, 8, 8, 16)          0         
+_________________________________________________________________
+conv2d_12 (Conv2D)           (None, 8, 8, 32)          4640      
+_________________________________________________________________
+activation_18 (Activation)   (None, 8, 8, 32)          0         
+_________________________________________________________________
+batch_normalization_17 (Batc (None, 8, 8, 32)          128       
+_________________________________________________________________
+up_sampling2d_5 (UpSampling2 (None, 16, 16, 32)        0         
+_________________________________________________________________
+conv2d_13 (Conv2D)           (None, 16, 16, 64)        18496     
+_________________________________________________________________
+activation_19 (Activation)   (None, 16, 16, 64)        0         
+_________________________________________________________________
+batch_normalization_18 (Batc (None, 16, 16, 64)        256       
+_________________________________________________________________
+up_sampling2d_6 (UpSampling2 (None, 32, 32, 64)        0         
+_________________________________________________________________
+conv2d_14 (Conv2D)           (None, 32, 32, 3)         1731      
+_________________________________________________________________
+activation_20 (Activation)   (None, 32, 32, 3)         0         
+=================================================================
+Total params: 187,235
+Trainable params: 185,507
+Non-trainable params: 1,728
+_________________________________________________________________
+[INFO:]DRR Autoencoder summary  None
+After build_autoencoder
+Train Data Shape:  (16120, 32, 32, 3)
+Train Label Shape:  (16120,)
+Validation Data Shape:  (16120, 32, 32, 3)
+Validation Label Shape:  (16120,)
+Test Data Shape:  (16120, 32, 32, 3)
+Test Label Shape:  (16120,)
+===========TRAINING AND PREDICTING WITH DCAE============================
+(f&p)RCAE_AD.DATASET: adi
+(f&p)self.dataset: adi
+adi/dogs is the self.dataset
+lamda (Before self.nn_model.compute_softhreshold)= 0.0
+shape XTrue  (16120, 32, 32, 3)
+shape Ytrue  (16120,)
+now  self.nn_model.compute_softhreshold
+inside compute_softhreshold
+lamda passed  0.0
+now fit_auto_conv_AE for i= 0
+In fit_auto_conv_AE
+[INFO ADI)] compiling model...
+[INFO:] Shape of U, V (256, 128) (256, 128)
+custom_rcae:term1  (?, 32, 32)
+custom_rcae:term2  ()
+custom_rcae:term3  ()
+fit_auto: length X_N = 16120
+fit_auto: length Xclean = 16120
+Train on 599 samples, validate on 15521 samples
+Epoch 1/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1.5020
+599/599 [==============================] - 28s 46ms/step - loss: 1.4984 - val_loss: 1.8687
+Epoch 2/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1.4643
+599/599 [==============================] - 27s 45ms/step - loss: 1.4623 - val_loss: 1.9269
+fit_auto: length ae_output = 16120
+fit_auto:2nd.time: length Xclean = 16120
+(lamda,Threshold) 0.0 0.0
+The type of b is ..., its len is  <class 'numpy.ndarray'> (16120, 3072) 3072
+Number of non zero elements  for N,lamda 49520640 0.0
+The shape of N (16120, 3072)
+The minimum value of N  -1.0
+The max value of N 0.6952509
+After self.nn_model.compute_softhreshold
+shape XTrue  (16120, 32, 32, 3)
+shape N  (16120, 3072)
+Before self.nn_model.cae.predict
+After self.nn_model.compute_best_worst_rank
+shape XTrue  (16120, 32, 32, 3)
+shape decoded  (16120, 32, 32, 3)
+
+best_top10_keys= dict_keys([419, 12078, 571, 191, 2636, 13198, 12366, 173, 8803, 5567, 10362, 295, 363, 14845, 10965, 5391, 48, 5631, 146, 9756, 3953, 126, 7783, 10046, 1549, 11265, 2619, 6251, 5431, 9040])
+
+worst_top10_keys= dict_keys([14980, 12646, 1397, 3354, 11181, 3127, 4512, 15307, 4756, 10532, 2320, 2407, 11490, 14788, 9192, 8052, 1985, 12828, 3113, 9348, 15539, 4704, 10145, 8635, 9594, 1487, 2880, 8962, 6692, 5055])
+
+Saving (ADI.py) results for best after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//best/
+
+Saving (ADI.py) results for worst after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//worst/
+shape X_test  (16120, 32, 32, 3)
+shape (X_test) decoded  (16120, 32, 32, 3)
+shape X_tsst  (4340, 32, 32, 3)
+shape (X_tsst) tssdecoded  (4340, 32, 32, 3)
+shape X_mytest  (2030, 32, 32, 3)
+shape (X_mytest) mydecoded  (16120, 32, 32, 3)
+before save_Most...shape X_test  (16120, 32, 32, 3)
+Anomalous filename string= most_anomalous-0
+[INFO:] The top_100_anomalies iter.( 0 )  (0,)
+[INFO:] The top_100_anomalies iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_anomalous-0_Class_0.png
+ len(worst_sorted_keys)=  16120
+worst_sorted_keys.shape=  1
+Normal file name string= most_normal-0
+[INFO:] The top_100_normal iter.( 0 )  (0,)
+[INFO:] The top_100_normal iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_normal-0_Class_0.png
+before save_Most...shape X_tsst  (4340, 32, 32, 3)
+Anomalous filename string= t2-most_anomalous-0-2
+[INFO:] The top_100_anomalies iter.( 0 )  (0,)
+[INFO:] The top_100_anomalies iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_anomalous-0-2_Class_0.png
+ len(worst_sorted_keys)=  4340
+worst_sorted_keys.shape=  1
+Normal file name string= t2-most_normal-0-2
+[INFO:] The top_100_normal iter.( 0 )  (0,)
+[INFO:] The top_100_normal iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_normal-0-2_Class_0.png
+before save_Most...shape X_mytest  (2030, 32, 32, 3)
+Anomalous filename string= t3-most_anomalous-0-3
+[INFO:] The top_100_anomalies iter.( 0 )  (0,)
+[INFO:] The top_100_anomalies iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_anomalous-0-3_Class_0.png
+ len(worst_sorted_keys)=  2030
+worst_sorted_keys.shape=  1
+Normal file name string= t3-most_normal-0-3
+[INFO:] The top_100_normal iter.( 0 )  (0,)
+[INFO:] The top_100_normal iter.( 0 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_normal-0-3_Class_0.png
+shape X_test  (16120, 32, 32, 3)
+=====================
+AUROC 0.0 0.6770968389545919
+AUROC-tsst 0.0 0.49036386138613863
+AUROC-mytest 0.0 0.3348843930635838
+=======================
+lamda (Before self.nn_model.compute_softhreshold)= 0.5
+shape XTrue  (16120, 32, 32, 3)
+shape Ytrue  (16120,)
+now  self.nn_model.compute_softhreshold
+inside compute_softhreshold
+lamda passed  0.5
+now fit_auto_conv_AE for i= 0
+In fit_auto_conv_AE
+[INFO ADI)] compiling model...
+[INFO:] Shape of U, V (256, 128) (256, 128)
+custom_rcae:term1  (?, 32, 32)
+custom_rcae:term2  ()
+custom_rcae:term3  ()
+fit_auto: length X_N = 16120
+fit_auto: length Xclean = 16120
+Train on 599 samples, validate on 15521 samples
+Epoch 1/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1.4417
+599/599 [==============================] - 28s 46ms/step - loss: 1.4398 - val_loss: 1.9638
+Epoch 2/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1.4161
+599/599 [==============================] - 27s 45ms/step - loss: 1.4143 - val_loss: 1.9838
+fit_auto: length ae_output = 16120
+fit_auto:2nd.time: length Xclean = 16120
+(lamda,Threshold) 0.5 0.25
+The type of b is ..., its len is  <class 'numpy.ndarray'> (16120, 3072) 3072
+Number of non zero elements  for N,lamda 49507867 0.5
+The shape of N (16120, 3072)
+The minimum value of N  -0.75
+The max value of N 0.1348397135734558
+After self.nn_model.compute_softhreshold
+shape XTrue  (16120, 32, 32, 3)
+shape N  (16120, 3072)
+Before self.nn_model.cae.predict
+After self.nn_model.compute_best_worst_rank
+shape XTrue  (16120, 32, 32, 3)
+shape decoded  (16120, 32, 32, 3)
+
+best_top10_keys= dict_keys([13028, 10799, 1420, 10318, 13680, 14913, 4140, 12057, 6130, 5376, 14418, 10485, 12280, 5041, 7742, 8411, 2226, 12423, 16085, 12085, 8452, 14186, 4032, 13207, 11137, 1002, 10442, 6336, 2891, 3539])
+
+worst_top10_keys= dict_keys([7931, 9395, 15357, 8802, 8266, 15182, 5187, 1411, 7049, 14646, 1924, 3284, 13419, 10436, 10364, 4257, 4802, 2880, 6577, 1423, 9979, 6239, 8689, 5042, 1861, 6291, 6013, 9107, 10871, 955])
+
+Saving (ADI.py) results for best after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//best/
+
+Saving (ADI.py) results for worst after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//worst/
+shape X_test  (16120, 32, 32, 3)
+shape (X_test) decoded  (16120, 32, 32, 3)
+shape X_tsst  (4340, 32, 32, 3)
+shape (X_tsst) tssdecoded  (4340, 32, 32, 3)
+shape X_mytest  (2030, 32, 32, 3)
+shape (X_mytest) mydecoded  (16120, 32, 32, 3)
+before save_Most...shape X_test  (16120, 32, 32, 3)
+Anomalous filename string= most_anomalous-1
+[INFO:] The top_100_anomalies iter.( 1 )  (0,)
+[INFO:] The top_100_anomalies iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_anomalous-1_Class_0.png
+ len(worst_sorted_keys)=  16120
+worst_sorted_keys.shape=  1
+Normal file name string= most_normal-1
+[INFO:] The top_100_normal iter.( 1 )  (0,)
+[INFO:] The top_100_normal iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_normal-1_Class_0.png
+before save_Most...shape X_tsst  (4340, 32, 32, 3)
+Anomalous filename string= t2-most_anomalous-1-2
+[INFO:] The top_100_anomalies iter.( 1 )  (0,)
+[INFO:] The top_100_anomalies iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_anomalous-1-2_Class_0.png
+ len(worst_sorted_keys)=  4340
+worst_sorted_keys.shape=  1
+Normal file name string= t2-most_normal-1-2
+[INFO:] The top_100_normal iter.( 1 )  (0,)
+[INFO:] The top_100_normal iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_normal-1-2_Class_0.png
+before save_Most...shape X_mytest  (2030, 32, 32, 3)
+Anomalous filename string= t3-most_anomalous-1-3
+[INFO:] The top_100_anomalies iter.( 1 )  (0,)
+[INFO:] The top_100_anomalies iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_anomalous-1-3_Class_0.png
+ len(worst_sorted_keys)=  2030
+worst_sorted_keys.shape=  1
+Normal file name string= t3-most_normal-1-3
+[INFO:] The top_100_normal iter.( 1 )  (0,)
+[INFO:] The top_100_normal iter.( 1 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_normal-1-3_Class_0.png
+shape X_test  (16120, 32, 32, 3)
+=====================
+AUROC 0.5 0.5073711490728574
+AUROC-tsst 0.5 0.44701402640264026
+AUROC-mytest 0.5 0.4384296724470135
+=======================
+lamda (Before self.nn_model.compute_softhreshold)= 1.0
+shape XTrue  (16120, 32, 32, 3)
+shape Ytrue  (16120,)
+now  self.nn_model.compute_softhreshold
+inside compute_softhreshold
+lamda passed  1.0
+now fit_auto_conv_AE for i= 0
+In fit_auto_conv_AE
+[INFO ADI)] compiling model...
+[INFO:] Shape of U, V (256, 128) (256, 128)
+custom_rcae:term1  (?, 32, 32)
+custom_rcae:term2  ()
+custom_rcae:term3  ()
+fit_auto: length X_N = 16120
+fit_auto: length Xclean = 16120
+Train on 599 samples, validate on 15521 samples
+Epoch 1/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1030.7271
+599/599 [==============================] - 28s 47ms/step - loss: 1030.7269 - val_loss: 1031.3050
+Epoch 2/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1030.7141
+599/599 [==============================] - 27s 44ms/step - loss: 1030.7128 - val_loss: 1031.3093
+fit_auto: length ae_output = 16120
+fit_auto:2nd.time: length Xclean = 16120
+(lamda,Threshold) 1.0 0.5
+The type of b is ..., its len is  <class 'numpy.ndarray'> (16120, 3072) 3072
+Number of non zero elements  for N,lamda 45273977 1.0
+The shape of N (16120, 3072)
+The minimum value of N  -0.5
+The max value of N 0.0
+After self.nn_model.compute_softhreshold
+shape XTrue  (16120, 32, 32, 3)
+shape N  (16120, 3072)
+Before self.nn_model.cae.predict
+After self.nn_model.compute_best_worst_rank
+shape XTrue  (16120, 32, 32, 3)
+shape decoded  (16120, 32, 32, 3)
+
+best_top10_keys= dict_keys([8121, 12763, 4681, 5779, 2405, 6956, 7037, 4840, 15017, 10799, 4498, 1156, 7040, 3217, 2754, 15805, 8609, 14140, 14033, 6720, 2257, 7995, 7384, 13132, 14125, 15323, 15021, 8926, 2581, 5107])
+
+worst_top10_keys= dict_keys([9395, 13580, 8802, 6013, 10871, 6577, 11354, 10436, 9454, 5953, 1861, 5799, 7931, 7049, 1423, 14646, 9979, 15182, 1259, 8266, 3284, 8403, 11689, 12383, 1411, 12863, 9722, 8087, 15559, 9107])
+
+Saving (ADI.py) results for best after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//best/
+
+Saving (ADI.py) results for worst after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//worst/
+shape X_test  (16120, 32, 32, 3)
+shape (X_test) decoded  (16120, 32, 32, 3)
+shape X_tsst  (4340, 32, 32, 3)
+shape (X_tsst) tssdecoded  (4340, 32, 32, 3)
+shape X_mytest  (2030, 32, 32, 3)
+shape (X_mytest) mydecoded  (16120, 32, 32, 3)
+before save_Most...shape X_test  (16120, 32, 32, 3)
+Anomalous filename string= most_anomalous-2
+[INFO:] The top_100_anomalies iter.( 2 )  (0,)
+[INFO:] The top_100_anomalies iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_anomalous-2_Class_0.png
+ len(worst_sorted_keys)=  16120
+worst_sorted_keys.shape=  1
+Normal file name string= most_normal-2
+[INFO:] The top_100_normal iter.( 2 )  (0,)
+[INFO:] The top_100_normal iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_normal-2_Class_0.png
+before save_Most...shape X_tsst  (4340, 32, 32, 3)
+Anomalous filename string= t2-most_anomalous-2-2
+[INFO:] The top_100_anomalies iter.( 2 )  (0,)
+[INFO:] The top_100_anomalies iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_anomalous-2-2_Class_0.png
+ len(worst_sorted_keys)=  4340
+worst_sorted_keys.shape=  1
+Normal file name string= t2-most_normal-2-2
+[INFO:] The top_100_normal iter.( 2 )  (0,)
+[INFO:] The top_100_normal iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_normal-2-2_Class_0.png
+before save_Most...shape X_mytest  (2030, 32, 32, 3)
+Anomalous filename string= t3-most_anomalous-2-3
+[INFO:] The top_100_anomalies iter.( 2 )  (0,)
+[INFO:] The top_100_anomalies iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_anomalous-2-3_Class_0.png
+ len(worst_sorted_keys)=  2030
+worst_sorted_keys.shape=  1
+Normal file name string= t3-most_normal-2-3
+[INFO:] The top_100_normal iter.( 2 )  (0,)
+[INFO:] The top_100_normal iter.( 2 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_normal-2-3_Class_0.png
+shape X_test  (16120, 32, 32, 3)
+=====================
+AUROC 1.0 0.2663789604321799
+AUROC-tsst 1.0 0.10336138613861387
+AUROC-mytest 1.0 0.2034421965317919
+=======================
+lamda (Before self.nn_model.compute_softhreshold)= 100.0
+shape XTrue  (16120, 32, 32, 3)
+shape Ytrue  (16120,)
+now  self.nn_model.compute_softhreshold
+inside compute_softhreshold
+lamda passed  100.0
+now fit_auto_conv_AE for i= 0
+In fit_auto_conv_AE
+[INFO ADI)] compiling model...
+[INFO:] Shape of U, V (256, 128) (256, 128)
+custom_rcae:term1  (?, 32, 32)
+custom_rcae:term2  ()
+custom_rcae:term3  ()
+fit_auto: length X_N = 16120
+fit_auto: length Xclean = 16120
+Train on 599 samples, validate on 15521 samples
+Epoch 1/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1267.6283
+599/599 [==============================] - 28s 47ms/step - loss: 1267.6272 - val_loss: 1268.2431
+Epoch 2/2
+
+500/599 [========================>.....] - ETA: 0s - loss: 1267.6167
+599/599 [==============================] - 27s 45ms/step - loss: 1267.6157 - val_loss: 1268.2436
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:521: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home_USER/AbsFngP/b/python3.6/site-packages/tensorflow/python/framework/dtypes.py:526: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+Using TensorFlow backend.
+fit_auto: length ae_output = 16120
+fit_auto:2nd.time: length Xclean = 16120
+(lamda,Threshold) 100.0 50.0
+The type of b is ..., its len is  <class 'numpy.ndarray'> (16120, 3072) 3072
+Number of non zero elements  for N,lamda 0 100.0
+The shape of N (16120, 3072)
+The minimum value of N  0.0
+The max value of N 0.0
+After self.nn_model.compute_softhreshold
+shape XTrue  (16120, 32, 32, 3)
+shape N  (16120, 3072)
+Before self.nn_model.cae.predict
+After self.nn_model.compute_best_worst_rank
+shape XTrue  (16120, 32, 32, 3)
+shape decoded  (16120, 32, 32, 3)
+
+best_top10_keys= dict_keys([6492, 7323, 5173, 15603, 2908, 14268, 14688, 4709, 12486, 7301, 14852, 484, 3517, 3547, 16019, 2866, 12457, 5874, 11736, 14577, 2293, 15410, 982, 2943, 11157, 11097, 9269, 16100, 4193, 5731])
+
+worst_top10_keys= dict_keys([9395, 8802, 6577, 6013, 10871, 15182, 7049, 10436, 5187, 11689, 9979, 5042, 10364, 3284, 11354, 5953, 9107, 6291, 9454, 14646, 1423, 1861, 11732, 2880, 14207, 1259, 15559, 7935, 7931, 7901])
+
+Saving (ADI.py) results for best after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//best/
+
+Saving (ADI.py) results for worst after being encoded and decoded: @
+/home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE//worst/
+shape X_test  (16120, 32, 32, 3)
+shape (X_test) decoded  (16120, 32, 32, 3)
+shape X_tsst  (4340, 32, 32, 3)
+shape (X_tsst) tssdecoded  (4340, 32, 32, 3)
+shape X_mytest  (2030, 32, 32, 3)
+shape (X_mytest) mydecoded  (16120, 32, 32, 3)
+before save_Most...shape X_test  (16120, 32, 32, 3)
+Anomalous filename string= most_anomalous-3
+[INFO:] The top_100_anomalies iter.( 3 )  (0,)
+[INFO:] The top_100_anomalies iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_anomalous-3_Class_0.png
+ len(worst_sorted_keys)=  16120
+worst_sorted_keys.shape=  1
+Normal file name string= most_normal-3
+[INFO:] The top_100_normal iter.( 3 )  (0,)
+[INFO:] The top_100_normal iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/most_normal-3_Class_0.png
+before save_Most...shape X_tsst  (4340, 32, 32, 3)
+Anomalous filename string= t2-most_anomalous-3-2
+[INFO:] The top_100_anomalies iter.( 3 )  (0,)
+[INFO:] The top_100_anomalies iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_anomalous-3-2_Class_0.png
+ len(worst_sorted_keys)=  4340
+worst_sorted_keys.shape=  1
+Normal file name string= t2-most_normal-3-2
+[INFO:] The top_100_normal iter.( 3 )  (0,)
+[INFO:] The top_100_normal iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t2-most_normal-3-2_Class_0.png
+before save_Most...shape X_mytest  (2030, 32, 32, 3)
+Anomalous filename string= t3-most_anomalous-3-3
+[INFO:] The top_100_anomalies iter.( 3 )  (0,)
+[INFO:] The top_100_anomalies iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_anomalous-3-3_Class_0.png
+ len(worst_sorted_keys)=  2030
+worst_sorted_keys.shape=  1
+Normal file name string= t3-most_normal-3-3
+[INFO:] The top_100_normal iter.( 3 )  (0,)
+[INFO:] The top_100_normal iter.( 3 ) -- len=  0
+plot mystrn=  /home_USER/AbsFngP/DNN/OneClass/OneClassRCAE-code//reports/figures/Clss0ADI/L1_RCAE/t3-most_normal-3-3_Class_0.png
+shape X_test  (16120, 32, 32, 3)
+=====================
+AUROC 100.0 0.44833026719229085
+AUROC-tsst 100.0 0.26348886138613864
+AUROC-mytest 100.0 0.3518082851637765
+=======================
+========================================================================
+===========END TRAINING AND PREDICTING WITH DCAE==========================
+AUROC computed  [0.44833026719229085]
+AUROC ===== 0.44833026719229085 +/- 0.0
+========================================================================

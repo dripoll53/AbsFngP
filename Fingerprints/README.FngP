@@ -1,0 +1,25 @@
+Production of 3D models of Antibodies. 
+We used Rosetta Antibody  to produce 3D models of antibodies (https://www.rosettacommons.org/)
+
+The directory ..../PLOS-soft/Fingerprints/FngPrntCode/ contains differents scripts the are needed 
+for fingerprint generation.
+
+===IMPORTANT =====
+To run the fingeprint scripts properly, the PYMOL program (https://pymol.org/2/) 
+must be installed in your system as a module named pymol
+Otherwise, the script "FngScrps.bsh" in the directory "./FngPrntGen" must be 
+edited to replace the "pymol" alias by the PYMOL executable   
+ 
+================
+The directory ..../PLOS-soft/Fingerprints/FngPrntCode/FngPrntGen/ 
+contains PERL and cshell scripts to lunch the generation process. 
+The directory contains a README file with additional explanations.
+
+An example of the directory organization (from Rosetta Antibody) that our scripts expect follows:
+..../PLOS-soft/Fingerprints/Models3D/ 
+..../PLOS-soft/Fingerprints/Models3D/Ab-NUM
+..../PLOS-soft/Fingerprints/Models3D/Ab-NUM/grafting/ 
+
+The "grafting" subdirectory contains PDB files of the antibody with (unique) label "Ab-NUM"
+the 3D models are labelled consecutively "model.1.pdb", "model.2.pdb", ..... "model.M.pdb" 
+where M is the total number of models of the antibody.

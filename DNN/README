@@ -1,0 +1,15 @@
+For examples of input and output files, and python scripts used for the DNN applications 
+described in our manuscript, see the following:
+ 
+Example of DNN to distinguish fingerprints from two antibodies  
+DNN -> TwoAbs
+
+Example of DNN for antibody classification  based on family lineage
+DNN -> Lineage
+
+Example of DNN for antibody classification  based on epitope specificity
+DNN -> Specificity
+
+Example of DNN using One-classification 
+DNN -> OneClass
+

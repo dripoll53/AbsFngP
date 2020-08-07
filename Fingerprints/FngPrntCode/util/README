@@ -1,0 +1,5 @@
+NOTE: If the executable doesn't work, you will need to recompile 
+with a FORTRAN compiler (gfortran is the GNU FORTRAN compiler)
+
+To compile this program type
+gfortran -o pdbAbseq pdbAbseq.f

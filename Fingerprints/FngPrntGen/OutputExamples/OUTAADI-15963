@@ -1,0 +1,344 @@
+Script FngScrps.bsh requires PYMOL to run properly
+Working in Dir:  CG-ADI-Abs
+ADI-15963-M1.pdb
+ADI-15963-M1
+ADI-15963-M1.pdb
+FNDCDR  ADI-15963-M1
+found L
+read L
+found H
+read H
+match(0 ) L Chain= CLQHDSYPYTFGQG
+Light Chain(L)= 
+EIVLTQSPSAMSASVGDRVTITCRASQGISNSLAWFQQTPGKVPKRLIYGASSLQSGVPSRFSGSGSGTEFTLTISSLQPEDFATYYCLQHDSYPYTFGQGTKLEIK
+match(1 ) H Chain= CARGPIVVMVFVARPFDYWGQG
+# of Heavy Chain FOUND1
+Light Chain(L)= 
+EIVLTQSPSAMSASVGDRVTITCRASQGISNSLAWFQQTPGKVPKRLIYGASSLQSGVPSRFSGSGSGTEFTLTISSLQPEDFATYYCLQHDSYPYTFGQGTKLEIK
+Heavy Chain(H)= 
+QVQLQQWGAGLLKPSETLSLTCAVSGGSFTGYNWSWIRQSPGKGLEWIGEINHGGSTNYNPSLKSRVTMSVDTSKKQLSLRLSSVTAADTAVYYCARGPIVVMVFVARPFDYWGQGTLVTVS
+HEAVY:
+cdr H1= GGSFTGYNWS  starts at G26, ends at S35; H1 length= 10
+cdr H2= EINHGGSTNYNPSLKS  starts at E50, ends at S65; H2 length= 16
+cdr H3= GPIVVMVFVARPFDY  starts at G98, ends at Y112; H3 length= 15
+LIGHT:
+cdr L1= RASQGISNSLA  starts at R24, ends at A34; L1 length= 11
+cdr L2= GASSLQS  starts at G50, ends at S56; L2 length= 7
+cdr L3= LQHDSYPYT  starts at L89, ends at T97; length= 9
+PyMOL>set max_threads, 4
+ Setting: max_threads set to 4.
+PyMOL>load ./templateLH.pdb
+ CmdLoad: PDB-string loaded into object "templateLH", state 1.
+PyMOL>load ./NewTmpl.pdb
+ CmdLoad: PDB-string loaded into object "NewTmpl", state 1.
+PyMOL>align NewTmpl, templateLH
+ Match: read scoring matrix.
+ Match: assigning 208 x 220 pairwise scores.
+ MatchAlign: aligning residues (208 vs 220)...
+ MatchAlign: score 548.000
+ ExecutiveAlign: 1348 atoms aligned.
+ ExecutiveRMS: 34 atoms rejected during cycle 1 (RMS=5.10).
+ ExecutiveRMS: 70 atoms rejected during cycle 2 (RMS=1.59).
+ ExecutiveRMS: 63 atoms rejected during cycle 3 (RMS=1.19).
+ ExecutiveRMS: 31 atoms rejected during cycle 4 (RMS=1.05).
+ ExecutiveRMS: 18 atoms rejected during cycle 5 (RMS=1.00).
+ Executive: RMS =    0.970 (1132 to 1132 atoms)
+PyMOL>load ./myf.pdb
+ CmdLoad: PDB-string loaded into object "myf", state 1.
+PyMOL>align myf, NewTmpl
+ Match: read scoring matrix.
+ Match: assigning 229 x 208 pairwise scores.
+ MatchAlign: aligning residues (229 vs 208)...
+ MatchAlign: score 1064.500
+ ExecutiveAlign: 3121 atoms aligned.
+ Executive: RMS =    0.000 (3121 to 3121 atoms)
+PyMOL>save ./algnF.pdb,((myf))
+ Save: wrote "./algnF.pdb".
+PyMOL>quit
+Delete fort* files! 
+Done! 
+CHRGPRJ CDR 10.5 0
+is_antingen= 0
+Done! 
+TRMPDB ADI-15963-M1-HL 10.5
+ica= 229
+ig= 7080
+isv= 91
+Done! 
+CHRGPRJ ADI-15963-M1-HL-trim 10.5 0
+is_antingen= 0
+Done! 
+No ANTIGN file for ADI-15963-M1
+PyMOL>set max_threads, 4
+ Setting: max_threads set to 4.
+PyMOL>load ABDY-trim-CRG.pdb
+ CmdLoad: PDB-string loaded into object "ABDY-trim-CRG", state 1.
+PyMOL>load ABDY-trim-GRD.pdb
+ CmdLoad: PDB-string loaded into object "ABDY-trim-GRD", state 1.
+PyMOL>set_view (\
+PyMOL>0.872809708,   -0.485131115,   -0.052901149,\
+PyMOL>0.377088845,    0.739273310,   -0.557885230,\
+PyMOL>0.309758067,    0.466985673,    0.828194320,\
+PyMOL>-0.000173934,   -0.000514860, -158.371902466,\
+PyMOL>-3.883765221,  -46.153148651,   57.015079498,\
+PyMOL>122.769180298,  191.415863037,  -20.000000000 )
+ Scene: view updated.
+PyMOL>viewport 1800, 1200
+PyMOL>util.color_deep("gray70", 'all')
+PyMOL>cmd.hide("lines"     ,"all")
+PyMOL>spectrum b, red_white_blue, ABDY-trim-GRD, minimum=-1.0, maximum=1.0
+ Spectrum: range (-1.00000 to  1.00000).
+PyMOL>spectrum b, red_white_blue, ABDY-trim-CRG, minimum=-1.0, maximum=1.0
+ Spectrum: range (-1.00000 to  1.00000).
+PyMOL>cmd.enable('ABDY-trim-GRD',1)
+PyMOL>cmd.show("mesh"      ,"ABDY-trim-GRD")
+PyMOL>cmd.enable('ABDY-trim-CRG',1)
+PyMOL>cmd.show("sticks"    ,"ABDY-trim-CRG")
+PyMOL>cmd.hide("(ABDY-trim-CRG and hydro)")
+PyMOL>ray 1250,900
+ Ray: render time: 15.84 sec. = 227.3 frames/hour (15.84 sec. accum.).
+PyMOL>png ABDY-FngrPrnt1.png
+ ScenePNG: wrote 1250x900 pixel image to file "ABDY-FngrPrnt1.png".
+PyMOL>cmd.disable('ABDY-trim-CRG')
+PyMOL>@colorbyAAcode.pml
+PyMOL>mstop
+PyMOL>dss
+PyMOL>hide
+PyMOL>color gray30, all
+ Executive: Colored 2664 atoms and 2 objects.
+PyMOL>select  pos, (resn arg+lys+his)
+ Selector: selection "pos" defined with 344 atoms.
+PyMOL>color marine, pos
+ Executive: Colored 344 atoms.
+PyMOL>disable pos
+PyMOL>select  neg, (resn glu+asp)
+ Selector: selection "neg" defined with 142 atoms.
+PyMOL>color red, neg
+ Executive: Colored 142 atoms.
+PyMOL>disable neg
+PyMOL>select  hydr, (resn ala+ile+leu+val)
+ Selector: selection "hydr" defined with 684 atoms.
+PyMOL>color grey70, hydr
+ Executive: Colored 684 atoms.
+PyMOL>disable hydr
+PyMOL>select  Amid, (resn gln+asn)
+ Selector: selection "Amid" defined with 208 atoms.
+PyMOL>color cyan, Amid
+ Executive: Colored 208 atoms.
+PyMOL>disable Ohyd
+PyMOL>select  Ohyd, (resn ser+thr)
+ Selector: selection "Ohyd" defined with 554 atoms.
+PyMOL>color orange, Ohyd
+ Executive: Colored 554 atoms.
+PyMOL>disable Sulf
+PyMOL>select  Sulf, (resn cys+met)
+ Selector: selection "Sulf" defined with 88 atoms.
+PyMOL>color yellow, Sulf
+ Executive: Colored 88 atoms.
+PyMOL>disable neg
+PyMOL>select  Feny, (resn phe)
+ Selector: selection "Feny" defined with 120 atoms.
+PyMOL>color green, Feny
+ Executive: Colored 120 atoms.
+PyMOL>disable Feny
+PyMOL>select  Glyc, (resn gly)
+ Selector: selection "Glyc" defined with 154 atoms.
+PyMOL>color white, Glyc
+ Executive: Colored 154 atoms.
+PyMOL>disable Glyc
+PyMOL>select  Prol, (resn pro)
+ Selector: selection "Prol" defined with 112 atoms.
+PyMOL>color brown, Prol
+ Executive: Colored 112 atoms.
+PyMOL>disable Prol
+PyMOL>select  Tryp, (resn trp)
+ Selector: selection "Tryp" defined with 48 atoms.
+PyMOL>color magenta, Tryp
+ Executive: Colored 48 atoms.
+PyMOL>disable Tryp
+PyMOL>select  Tyro, (resn tyr)
+ Selector: selection "Tyro" defined with 210 atoms.
+PyMOL>color violetpurple, Tyro
+ Executive: Colored 210 atoms.
+PyMOL>disable Tyro
+PyMOL>cmd.enable('ABDY-trim-GRD',1)
+PyMOL>cmd.show("mesh"      ,"ABDY-trim-GRD")
+PyMOL>cmd.enable('ABDY-trim-CRG',1)
+PyMOL>cmd.show("sticks"    ,"ABDY-trim-CRG")
+PyMOL>cmd.hide("(ABDY-trim-CRG and hydro)")
+PyMOL>ray 1250,900
+ Ray: render time: 15.86 sec. = 227.0 frames/hour (31.70 sec. accum.).
+PyMOL>png ABDY-FngrPrnt1-byAA.png
+ ScenePNG: wrote 1250x900 pixel image to file "ABDY-FngrPrnt1-byAA.png".
+PyMOL>quit
+ADI-15963-M2.pdb
+ADI-15963-M2
+ADI-15963-M2.pdb
+FNDCDR  ADI-15963-M2
+found L
+read L
+found H
+read H
+match(0 ) L Chain= CLQHDSYPYTFGQG
+Light Chain(L)= 
+EIVLTQSPSAMSASVGDRVTITCRASQGISNSLAWFQQTPGKVPKRLIYGASSLQSGVPSRFSGSGSGTEFTLTISSLQPEDFATYYCLQHDSYPYTFGQGTKLEIK
+match(1 ) H Chain= CARGPIVVMVFVARPFDYWGQG
+# of Heavy Chain FOUND1
+Light Chain(L)= 
+EIVLTQSPSAMSASVGDRVTITCRASQGISNSLAWFQQTPGKVPKRLIYGASSLQSGVPSRFSGSGSGTEFTLTISSLQPEDFATYYCLQHDSYPYTFGQGTKLEIK
+Heavy Chain(H)= 
+QVQLQQWGAGLLKPSETLSLTCAVSGGSFTGYNWSWIRQSPGKGLEWIGEINHGGSTNYNPSLKSRVTMSVDTSKKQLSLRLSSVTAADTAVYYCARGPIVVMVFVARPFDYWGQGTLVTVS
+HEAVY:
+cdr H1= GGSFTGYNWS  starts at G26, ends at S35; H1 length= 10
+cdr H2= EINHGGSTNYNPSLKS  starts at E50, ends at S65; H2 length= 16
+cdr H3= GPIVVMVFVARPFDY  starts at G98, ends at Y112; H3 length= 15
+LIGHT:
+cdr L1= RASQGISNSLA  starts at R24, ends at A34; L1 length= 11
+cdr L2= GASSLQS  starts at G50, ends at S56; L2 length= 7
+cdr L3= LQHDSYPYT  starts at L89, ends at T97; length= 9
+PyMOL>set max_threads, 4
+ Setting: max_threads set to 4.
+PyMOL>load ./templateLH.pdb
+ CmdLoad: PDB-string loaded into object "templateLH", state 1.
+PyMOL>load ./NewTmpl.pdb
+ CmdLoad: PDB-string loaded into object "NewTmpl", state 1.
+PyMOL>align NewTmpl, templateLH
+ Match: read scoring matrix.
+ Match: assigning 208 x 220 pairwise scores.
+ MatchAlign: aligning residues (208 vs 220)...
+ MatchAlign: score 548.000
+ ExecutiveAlign: 1348 atoms aligned.
+ ExecutiveRMS: 34 atoms rejected during cycle 1 (RMS=5.17).
+ ExecutiveRMS: 75 atoms rejected during cycle 2 (RMS=1.60).
+ ExecutiveRMS: 63 atoms rejected during cycle 3 (RMS=1.19).
+ ExecutiveRMS: 29 atoms rejected during cycle 4 (RMS=1.05).
+ ExecutiveRMS: 21 atoms rejected during cycle 5 (RMS=1.00).
+ Executive: RMS =    0.970 (1126 to 1126 atoms)
+PyMOL>load ./myf.pdb
+ CmdLoad: PDB-string loaded into object "myf", state 1.
+PyMOL>align myf, NewTmpl
+ Match: read scoring matrix.
+ Match: assigning 229 x 208 pairwise scores.
+ MatchAlign: aligning residues (229 vs 208)...
+ MatchAlign: score 1064.500
+ ExecutiveAlign: 3121 atoms aligned.
+ Executive: RMS =    0.000 (3121 to 3121 atoms)
+PyMOL>save ./algnF.pdb,((myf))
+ Save: wrote "./algnF.pdb".
+PyMOL>quit
+Delete fort* files! 
+Done! 
+CHRGPRJ CDR 10.5 0
+is_antingen= 0
+Done! 
+TRMPDB ADI-15963-M2-HL 10.5
+ica= 229
+ig= 7080
+isv= 91
+Done! 
+CHRGPRJ ADI-15963-M2-HL-trim 10.5 0
+is_antingen= 0
+Done! 
+No ANTIGN file for ADI-15963-M2
+PyMOL>set max_threads, 4
+ Setting: max_threads set to 4.
+PyMOL>load ABDY-trim-CRG.pdb
+ CmdLoad: PDB-string loaded into object "ABDY-trim-CRG", state 1.
+PyMOL>load ABDY-trim-GRD.pdb
+ CmdLoad: PDB-string loaded into object "ABDY-trim-GRD", state 1.
+PyMOL>set_view (\
+PyMOL>0.872809708,   -0.485131115,   -0.052901149,\
+PyMOL>0.377088845,    0.739273310,   -0.557885230,\
+PyMOL>0.309758067,    0.466985673,    0.828194320,\
+PyMOL>-0.000173934,   -0.000514860, -158.371902466,\
+PyMOL>-3.883765221,  -46.153148651,   57.015079498,\
+PyMOL>122.769180298,  191.415863037,  -20.000000000 )
+ Scene: view updated.
+PyMOL>viewport 1800, 1200
+PyMOL>util.color_deep("gray70", 'all')
+PyMOL>cmd.hide("lines"     ,"all")
+PyMOL>spectrum b, red_white_blue, ABDY-trim-GRD, minimum=-1.0, maximum=1.0
+ Spectrum: range (-1.00000 to  1.00000).
+PyMOL>spectrum b, red_white_blue, ABDY-trim-CRG, minimum=-1.0, maximum=1.0
+ Spectrum: range (-1.00000 to  1.00000).
+PyMOL>cmd.enable('ABDY-trim-GRD',1)
+PyMOL>cmd.show("mesh"      ,"ABDY-trim-GRD")
+PyMOL>cmd.enable('ABDY-trim-CRG',1)
+PyMOL>cmd.show("sticks"    ,"ABDY-trim-CRG")
+PyMOL>cmd.hide("(ABDY-trim-CRG and hydro)")
+PyMOL>ray 1250,900
+ Ray: render time: 15.82 sec. = 227.6 frames/hour (15.82 sec. accum.).
+PyMOL>png ABDY-FngrPrnt1.png
+ ScenePNG: wrote 1250x900 pixel image to file "ABDY-FngrPrnt1.png".
+PyMOL>cmd.disable('ABDY-trim-CRG')
+PyMOL>@colorbyAAcode.pml
+PyMOL>mstop
+PyMOL>dss
+PyMOL>hide
+PyMOL>color gray30, all
+ Executive: Colored 2664 atoms and 2 objects.
+PyMOL>select  pos, (resn arg+lys+his)
+ Selector: selection "pos" defined with 344 atoms.
+PyMOL>color marine, pos
+ Executive: Colored 344 atoms.
+PyMOL>disable pos
+PyMOL>select  neg, (resn glu+asp)
+ Selector: selection "neg" defined with 142 atoms.
+PyMOL>color red, neg
+ Executive: Colored 142 atoms.
+PyMOL>disable neg
+PyMOL>select  hydr, (resn ala+ile+leu+val)
+ Selector: selection "hydr" defined with 684 atoms.
+PyMOL>color grey70, hydr
+ Executive: Colored 684 atoms.
+PyMOL>disable hydr
+PyMOL>select  Amid, (resn gln+asn)
+ Selector: selection "Amid" defined with 208 atoms.
+PyMOL>color cyan, Amid
+ Executive: Colored 208 atoms.
+PyMOL>disable Ohyd
+PyMOL>select  Ohyd, (resn ser+thr)
+ Selector: selection "Ohyd" defined with 554 atoms.
+PyMOL>color orange, Ohyd
+ Executive: Colored 554 atoms.
+PyMOL>disable Sulf
+PyMOL>select  Sulf, (resn cys+met)
+ Selector: selection "Sulf" defined with 88 atoms.
+PyMOL>color yellow, Sulf
+ Executive: Colored 88 atoms.
+PyMOL>disable neg
+PyMOL>select  Feny, (resn phe)
+ Selector: selection "Feny" defined with 120 atoms.
+PyMOL>color green, Feny
+ Executive: Colored 120 atoms.
+PyMOL>disable Feny
+PyMOL>select  Glyc, (resn gly)
+ Selector: selection "Glyc" defined with 154 atoms.
+PyMOL>color white, Glyc
+ Executive: Colored 154 atoms.
+PyMOL>disable Glyc
+PyMOL>select  Prol, (resn pro)
+ Selector: selection "Prol" defined with 112 atoms.
+PyMOL>color brown, Prol
+ Executive: Colored 112 atoms.
+PyMOL>disable Prol
+PyMOL>select  Tryp, (resn trp)
+ Selector: selection "Tryp" defined with 48 atoms.
+PyMOL>color magenta, Tryp
+ Executive: Colored 48 atoms.
+PyMOL>disable Tryp
+PyMOL>select  Tyro, (resn tyr)
+ Selector: selection "Tyro" defined with 210 atoms.
+PyMOL>color violetpurple, Tyro
+ Executive: Colored 210 atoms.
+PyMOL>disable Tyro
+PyMOL>cmd.enable('ABDY-trim-GRD',1)
+PyMOL>cmd.show("mesh"      ,"ABDY-trim-GRD")
+PyMOL>cmd.enable('ABDY-trim-CRG',1)
+PyMOL>cmd.show("sticks"    ,"ABDY-trim-CRG")
+PyMOL>cmd.hide("(ABDY-trim-CRG and hydro)")
+PyMOL>ray 1250,900
+ Ray: render time: 15.78 sec. = 228.2 frames/hour (31.59 sec. accum.).
+PyMOL>png ABDY-FngrPrnt1-byAA.png
+ ScenePNG: wrote 1250x900 pixel image to file "ABDY-FngrPrnt1-byAA.png".
+PyMOL>quit

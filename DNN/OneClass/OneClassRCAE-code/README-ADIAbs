@@ -1,0 +1,35 @@
+Disclaimer: The code provided here has been adapted from the original one for RCAE produced 
+by Chalapathy et al. for our particular application.
+Readers are encouraged to use the original code from https://github.com/raghavchalapathy/oc-nn 
+for their research.
+
+RUN SETUP 
+- To run the OneClass test, edit the script adi_RCAE_Class0.py and replace
+   /home_USER with your home path.
+
+- The input files parameters for outliers and validation set % (Cfg.fracVal)  must be set
+
+- Cfg.NUMoutliers corresponds to the total number of outliers, and is equal to the combined 
+   number of images for SITE 2 in the train and test sets, i.e., train/S2 + test/S2 
+
+- Cfg.fracVal is the fraction of fingerprints assigned to the validation set. The distribution 
+   of images into actual "training" and "validation" sets is carried out internally. The number 
+   for Cfg.fracVal can be estimated as ~1/3 of S1 images in the combined train and test sets, 
+   plus ALL images of the outliers.
+
+   Formula for estimating Cfg.fracVal:
+   Cfg.fracVal ~ {[1/3 * (# of S1 images) ] + Cfg.NUMoutliers} / [(# of S1 images) + Cfg.NUMoutliers]
+
+   Example: if the total # of S1 images in train/S1 an test/S1 dirs is 900, and there are 10000 
+   images of outliers, 
+
+   Cfg.fracVal=  10300/ 10900 = 0.945
+
+- To run the scripti, type 
+   python adi_RCAE_Class0.py >&  adi_RCAE_Class0-Testrun
+
+- The output file is adi_RCAE_Class0-Testrun.  
+   The AUROC values are found at the bottom of the output file.
+      - AUROC  correponds to the test set as defined by Chalapathy et al
+      - AUROC-mytest corresponds to the cross-validation test set found in (../ADI_DB/dataL1/MyTest/).
+   

@@ -1,0 +1,60 @@
+##### Instructions for generating the fingerprints of Abs #####
+*************IMPORTANT****************************
+1- This software runs on a UNIX environment
+2- You need PYMOL installed in your system.
+    it is free and you can get it here: https://pymol.org/2/
+**************************************************
+These instructions assume that you have PDB files with models of your Abs.
+  Otherwise you need to generate PDB models. We use Rosetta Antibody for 
+  that purpose.  Rosetta Antibody saves the models into a directory with 
+  the Ab name, under subfolder "grafting". PDB files of the models 
+  are labelled sequentially "model.1.pdb","model.2.pdb", ...  
+  We have constructed a directory "../Models3D" that contains a couple of 
+  models for two Abs using the directory structure from Rosetta Antibody
+
+
+To generate the fingerprints you have to execute three commands describe below.
+
+These are the files required:
+InListAbId.txt: A file with number to reconstruct the name of Abs
+                (example: ADIMAB Abs are labelled as "ADI-15975"; if you need a 
+                 fingerprint for this Ab, this input file must contain the number 
+                 "15975" in one of its lines)  
+
+tmpBatch:       Template file with the instructions required for submiting a job 
+                in your batch system. The last line of file must be changed to 
+                with the instuction to execute you .bashrc file  
+
+scripts: 
+     FngPset.csh 
+     GenerCG.pl 
+     FngRun.pl  
+     FngScrps.bsh 
+
+** COMMAND #1 **
+   csh FngPset.csh InListAbId.txt ADI-
+     1st argument is a file listing the Abs
+     2nd argument is the generic label of the set of Abs
+
+     The previous command generates a subdirectory "RosMod" with subdirectories 
+      for all the Abs from the list (InListAbId.txt) that were found. The script  
+      fills the subdirectories with symbolic links to all the Ab models.a It also, 
+      generates a file named "ListADIs" that will be used as input in the next step. 
+
+** COMMAND #2 **
+perl -w  GenerCG.pl ListADIs
+
+This command prepares the directories where the fingerprints will reside.
+
+
+** COMMAND #3 **
+perl -w  FngRun.pl CG-ADI-Abs ListADIs OUTA
+
+Submit jobs for fingerprint generation to the batch queue
+FngRun.pl uses the output of GenerCG.pl (ListADIs) to select the Abs
+
+Examples of the OUTPUT files are included in the directory "./OutputExamples"
+
+To check the number of fingerprint images (PNG files) produced, use the cmd: 
+ls -1 ./CG-ADI-Abs*/*/*png | wc -l
+
